@@ -4,17 +4,11 @@ import time
 import psutil
 from AppOpener import open, close
 
-
 cap = cv2.VideoCapture(0)
-
-
-
 
 mpHands = mp.solutions.hands
 hands = mpHands.Hands()
 mpDraw = mp.solutions.drawing_utils
-
-
 
 pTime = 0
 cTime = 0
@@ -37,15 +31,12 @@ while True:
             if len(lmList) != 0:
                 if lmList[8][2] < lmList[6][2]:
                     if "notepad.exe" in (i.name() for i in psutil.process_iter()):
-                        print("should work")
                         continue
                     else:
                         open("notepad")
                 else:
                     close("notepad")
             mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
-           
-
 
     cTime = time.time()
     fps = 1/(cTime - pTime)
